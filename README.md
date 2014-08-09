@@ -1,7 +1,7 @@
 mongoose-checkit
 ================
 
-[![Build Status](https://img.shields.io/travis/keifukuda/mongoose-checkit/master.svg)](https://travis-ci.org/keifukuda/mongoose-checkit)
+[![Build Status](https://travis-ci.org/keifukuda/mongoose-checkit.svg?branch=master)](https://travis-ci.org/keifukuda/mongoose-checkit)
 [![Dependency Status](https://david-dm.org/keifukuda/mongoose-checkit.svg?theme=shields.io)](https://david-dm.org/keifukuda/mongoose-checkit)
 [![devDependency Status](https://david-dm.org/keifukuda/mongoose-checkit/dev-status.svg?theme=shields.io)](https://david-dm.org/keifukuda/mongoose-checkit#info=devDependencies)
 
@@ -66,10 +66,12 @@ Checkit.Validators.unused = function(value, table, column) {
 userSchema = new mongoose.Schema({
   username: {
     type: String,
+    unique: true,
     checkit: ['required', 'alphaDash', 'unused:User:username']
   },
   email: {
     type: String,
+    unique: true,
     checkit: ['required', 'email', 'unused:User:email']
   }
 });
