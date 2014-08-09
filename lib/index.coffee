@@ -17,7 +17,7 @@ module.exports = (schema, options) ->
 
     checkit = Checkit rules
 
-    checkit.run flatten @toJSON()
+    checkit.run flatten @toObject()
     .then ->
       next()
 
