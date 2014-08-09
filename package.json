@@ -4,7 +4,7 @@
   },
   "license": "MIT",
   "name": "mongoose-checkit",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "checkit plugin for mongoose",
   "keywords": ["mongoose", "mongodb", "checkit", "validate", "validator", "validation"],
   "homepage": "https://github.com/keifukuda/mongoose-checkit",
