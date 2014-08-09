@@ -1,0 +1,31 @@
+{
+  "author": {
+    "name": "Kei Fukuda"
+  },
+  "license": "MIT",
+  "name": "mongoose-checkit",
+  "version": "0.0.1",
+  "description": "checkit plugin for mongoose",
+  "keywords": ["mongoose", "mongodb", "checkit", "validate", "validator", "validation"],
+  "homepage": "https://github.com/keifukuda/mongoose-checkit",
+  "bugs": "https://github.com/keifukuda/mongoose-checkit/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keifukuda/mongoose-checkit.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 60000 --require 'espower-coffee/guess' test/index-test.coffee"
+  },
+  "dependencies": {
+    "checkit": "^0.2.0-pre",
+    "coffee-script": "^1.7.1",
+    "flat": "^1.2.1"
+  },
+  "devDependencies": {
+    "espower-coffee": "^0.1.0",
+    "mocha": "^1.21.4",
+    "mongoose": "^3.8.14",
+    "power-assert": "^0.7.2"
+  }
+}
