@@ -1,6 +1,3 @@
-flat = require 'flat'
-flatten = flat.flatten
-
 module.exports = (schema, options) ->
 
   Checkit = options || require 'checkit'
@@ -23,5 +20,20 @@ module.exports = (schema, options) ->
 
     .catch (err) ->
       next err
+
+
+flatten = (object, path = [], result = {}) ->
+
+  for key, value of object
+    _path = path.concat [key]
+
+    if value instanceof Object
+      result[_path.join('.')] = value
+      flatten value, _path, result
+
+    else
+      result[_path.join('.')] = value
+
+  return result
 
 module.exports.flatten = flatten

@@ -1,6 +1,7 @@
 {
   "author": {
-    "name": "Kei Fukuda"
+    "name": "Kei Fukuda",
+    "email": "kei.fukuda@me.com"
   },
   "license": "MIT",
   "name": "mongoose-checkit",
@@ -26,8 +27,7 @@
   },
   "dependencies": {
     "checkit": "^0.2.0-pre",
-    "coffee-script": "^1.7.1",
-    "flat": "^1.2.1"
+    "coffee-script": "^1.7.1"
   },
   "devDependencies": {
     "espower-coffee": "^0.1.0",

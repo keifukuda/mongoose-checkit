@@ -7,6 +7,10 @@ Checkit.Validators.username = (value) ->
   unless /^[a-z][a-z0-9\-]{1,30}[a-z0-9]$/.test value
     throw new Error 'The username must only contain alpha-numeric characters and dashes.'
 
+Checkit.Validators.avatar = (value) ->
+  if !value.medium?.type? and !value.medium?.url?
+    throw new Error 'Invalid.'
+
 
 mongoose.connect 'mongodb://localhost/mongoose-checkit'
 
@@ -49,6 +53,15 @@ advancedSchema = new mongoose.Schema
         rule: 'required'
         message: 'You mast supply a lastname value!!!'
 
+  avatar:
+    type: Object
+    checkit: ['required', 'object', 'avatar']
+    default:
+      medium:
+        type: 'image/jpeg'
+        url: 'http://example.com/avatar.jpg'
+
+
 
 advancedSchema.plugin checkit, Checkit
 Advanced = mongoose.model 'Advanced', advancedSchema
@@ -83,6 +96,7 @@ describe 'Mongoose Checkit Plugin', ->
         email: 'kei@example'
         profile:
           firstname: 'Kei'
+        avatar: 'http://example.com/avatar.jpg'
 
       Advanced.create attrs, (err) ->
         assert err instanceof Checkit.Error
@@ -91,6 +105,7 @@ describe 'Mongoose Checkit Plugin', ->
         assert err.errors.email instanceof Checkit.FieldError
         assert err.errors['profile.lastname'] instanceof Checkit.FieldError
         assert err.errors['profile.lastname'].message is 'You mast supply a lastname value!!!'
+        assert err.errors.avatar instanceof Checkit.FieldError
         done()
 
 
