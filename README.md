@@ -53,18 +53,13 @@ checkit = require('mongoose-checkit');
 mongoose.connect('mongodb://localhost/mongoose-checkit');
 
 Checkit.Validators.unused = function(value, table, column) {
-  return Promise.resolve().then(function() {
-    var attrs;
-    attrs = {};
-    attrs[column] = value;
-    return api.models[table].findOne(attrs).exec(function(err, document) {
-      if (err) {
-        throw err;
-      }
-      if (document) {
-        throw new Error("The " + column + " field is already in use.");
-      }
-    });
+  var attrs;
+  attrs = {};
+  attrs[column] = value;
+  return mongoose.model(table).find(attrs).limit(1).count().exec().then(function(count) {
+    if (count) {
+      throw new Error("The " + column + " field is already in use.");
+    }
   });
 };
 
